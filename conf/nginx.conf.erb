@@ -11,6 +11,7 @@ http {
   types_hash_max_size 2048;
   include mime.types;
   server {
+    return 301 $scheme://$http_host$1;
     listen <%= ENV["PORT"] %>;
     server_name  _;
     <% if ENV["ROOT"] %>
