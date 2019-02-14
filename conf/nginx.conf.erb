@@ -15,7 +15,7 @@ http {
       try_files $uri @rewrite;
     }
     location @rewrite {
-      return 302 $scheme://$http_host$uri/;
+      return 301 $scheme://$http_host$uri/;
     }
     listen <%= ENV["PORT"] %>;
     server_name  _;
