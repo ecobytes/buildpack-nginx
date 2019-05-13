@@ -11,6 +11,12 @@ http {
   types_hash_max_size 2048;
   include mime.types;
   server {
+    location ~ ^.*[^/]$ {
+      try_files $uri @rewrite;
+    }
+    location @rewrite {
+      return 301 $scheme://$http_host$uri/;
+    }
     listen <%= ENV["PORT"] %>;
     server_name  _;
     <% if ENV["ROOT"] %>
