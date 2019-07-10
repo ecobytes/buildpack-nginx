@@ -95,11 +95,11 @@ if [[ ! -f "${CACHE_DIR}/bin/nginx" ]]; then
     --without-mail_pop3_module \
     --without-mail_imap_module \
     --without-mail_smtp_module \
-    CFLAGS='Wall Wno-error'
+    
 
   sed -i "/CFLAGS/s/ \-O //g" objs/Makefile
 
-  make && make install
+  make CFLAGS='Wall Wno-error' && make install
 
   rm -rf $CACHE_DIR/bin && mkdir -p $CACHE_DIR/bin/
   cp -r $BUILD_DIR/nginx/* $CACHE_DIR/bin/
